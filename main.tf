@@ -29,8 +29,8 @@ resource "null_resource" "password" {
 
 resource "github_repository_deploy_key" "argocd_repo_deploykey" {
   title      = "argocd-connect"
-  repository = "gitops"
-  key        = var.ssh_public_key
+  repository = "gitops-argocd"
+  key        = file("${path.module}/argocd/argocd.pub")
   read_only  = "false"
 }
 
@@ -46,9 +46,9 @@ resource "kubernetes_secret_v1" "ssh_key" {
   type = "Opaque"
 
   data = {
-    "sshPrivateKey" = var.ssh_private_key
+    "sshPrivateKey" = base64encode(file("${path.module}/argocd/argocd"))
     "type"          = "git"
-    "url"           = "git@github-gd:thegodeveloper/gitops-argocd.git"
+    "url"           = "git@github.com:thegodeveloper/gitops-argocd.git"
     "name"          = "github"
     "project"       = "default"
   }

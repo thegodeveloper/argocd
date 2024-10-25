@@ -14,11 +14,3 @@ variable "github_token" {
 variable "github_user" {
   type = string
 }
-
-variable "ssh_public_key" {
-  type = string
-}
-
-variable "ssh_private_key" {
-  type = string
-}
