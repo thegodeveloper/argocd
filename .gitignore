@@ -1,6 +1,8 @@
 .idea
 .terraform
-*argocd-login.txt
+argocd/argocd-login.txt
+argocd/argocd
+argocd/argocd.pub
 .terraform.lock.hcl
 terraform.tfstate
 terraform.tfstate.backup
