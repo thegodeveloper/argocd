@@ -27,12 +27,12 @@ resource "null_resource" "password" {
   depends_on = [helm_release.argocd]
 }
 
-resource "github_repository_deploy_key" "argocd_repo_deploykey" {
+/*resource "github_repository_deploy_key" "argocd_repo_deploykey" {
   title      = "argocd-connect"
   repository = "gitops-argocd"
   key        = file("${path.module}/argocd/argocd.pub")
   read_only  = "false"
-}
+}*/
 
 resource "kubernetes_secret_v1" "ssh_key" {
   metadata {
@@ -46,7 +46,7 @@ resource "kubernetes_secret_v1" "ssh_key" {
   type = "Opaque"
 
   data = {
-    "sshPrivateKey" = base64encode(file("${path.module}/argocd/argocd"))
+    "sshPrivateKey" = file("${path.module}/argocd/id_rsa")
     "type"          = "git"
     "url"           = "git@github.com:thegodeveloper/gitops-argocd.git"
     "name"          = "github"
