@@ -1,6 +1,6 @@
 variable "eks-name" {
   type    = string
-  default = "docker-desktop"
+  default = "devops"
 }
 
 variable "env" {
